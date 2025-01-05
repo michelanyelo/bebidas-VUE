@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Tailwind CSS
+
+sh
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
