@@ -1,7 +1,7 @@
 <script setup>
-
+import HeaderComp from './components/HeaderComp.vue';
 </script>
 
 <template>
-  <h1>Desde Pinia</h1>
+  <HeaderComp />
 </template>
