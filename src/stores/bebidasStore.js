@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, onMounted, reactive } from "vue";
-import APIservice from "@/services/APIservice";
+import APIservice from "@/services/APIService.js";
 
 export const useBebidasStore = defineStore('bebidas', () => {
   const categorias = ref([]);
