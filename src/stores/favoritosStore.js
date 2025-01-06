@@ -7,9 +7,17 @@ export const useFavoritosStore = defineStore('favoritos', () => {
   const favoritos = ref([]);
   const bebidasStore = useBebidasStore();
 
+  onMounted(() => {
+    cargarLocalStorage();
+  })
+
   watch(favoritos, () => {
     sincronizarLocalStorage()
   }, { deep: true })
+
+  const cargarLocalStorage = () => {
+    favoritos.value = JSON.parse(localStorage.getItem('favoritos')) || [];
+  }
 
   const sincronizarLocalStorage = () => {
     localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
