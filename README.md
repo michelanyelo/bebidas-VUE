@@ -34,8 +34,11 @@ npm run build
 npm run lint
 ```
 
-### Tailwind CSS
+<!-- lista tailwind y axios como dependencias -->
 
-sh
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+### Dependencias
+
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Vue Router](https://router.vuejs.org/)
+- [Vue 3](https://vuejs.org/)

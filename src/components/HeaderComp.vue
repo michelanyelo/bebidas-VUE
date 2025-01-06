@@ -6,7 +6,6 @@ import { useBebidasStore } from '../stores/bebidasStore.js';
 const route = useRoute();
 const paginaInicio = computed(() => route.name === 'inicio');
 const bebidaStore = useBebidasStore();
-console.log(bebidaStore.categorias);
 
 </script>
 
@@ -40,7 +39,9 @@ console.log(bebidaStore.categorias);
         <div class="space-y-4">
           <label for="categoria" class="block text-white uppercase font-extrabold text-lg">Categoría</label>
           <select id="categoria" name="categoria" class="w-full p-3 rounded-lg focus:outline-none">
-            <option value="">-- Seleccione: --</option>
+            <option value="" selected disabled>-- Seleccione: --</option>
+            <option v-for="categoria in bebidaStore.categorias" :key="categoria.strCategory"
+              :value="categoria.strCategory">{{ categoria.strCategory }}</option>
           </select>
         </div>
 
