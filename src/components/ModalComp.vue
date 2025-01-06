@@ -1,11 +1,14 @@
 <script setup>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { useModalStore } from '@/stores/modalStore';
+
+const modalStore = useModalStore();
 
 </script>
 
 <template>
-  <TransitionRoot as="template" :show="true">
-    <Dialog as="div" class="relative z-10">
+  <TransitionRoot as="template" :show="modalStore.modal">
+    <Dialog as="div" class="relative z-10" @close="modalStore.handleClickModal()">
       <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
         leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -21,13 +24,14 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
               <div>
                 <div class="mt-3">
-
-
-
+                  <h3 class="text-lg leading-6 font-medium text-gray-900">Modal Title</h3>
                 </div>
               </div>
               <div class="mt-5 sm:mt-6 flex justify-between gap-4">
-
+                <button class="w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
+                  @click="modalStore.handleClickModal()">
+                  Cerrar
+                </button>
               </div>
             </DialogPanel>
           </TransitionChild>
