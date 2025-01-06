@@ -15,17 +15,22 @@ export const useFavoritosStore = defineStore('favoritos', () => {
     sincronizarLocalStorage()
   }, { deep: true })
 
-  const cargarLocalStorage = () => {
-    favoritos.value = JSON.parse(localStorage.getItem('favoritos')) || [];
-  }
+  const cargarLocalStorage = () => favoritos.value = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-  const sincronizarLocalStorage = () => {
-    localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+  const sincronizarLocalStorage = () => localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+
+  const existeFavorito = (id) => {
+    const favoritosLocalStorage = cargarLocalStorage();
+    return favoritosLocalStorage.some(favorito => favorito.idDrink === id);
   }
 
   const handleClickFavorito = () => {
-    favoritos.value.push(bebidasStore.receta);
-    console.log(favoritos.value);
+    if (existeFavorito(bebidasStore.receta.idDrink)) {
+      // favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidasStore.receta.idDrink);
+      console.log('Ya existe en favoritos');
+    } else {
+      favoritos.value.push(bebidasStore.receta);
+    }
   }
 
   return {
