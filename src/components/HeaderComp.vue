@@ -32,13 +32,14 @@ const bebidaStore = useBebidasStore();
           <label for="ingrediente" class="block text-white uppercase font-extrabold text-lg">Nombre o
             Ingredientes</label>
           <input type="text" id="ingrediente" name="ingrediente" class="w-full p-3 rounded-lg focus:outline-none"
-            placeholder="Buscar por nombre o ingredientes" />
+            placeholder="Buscar por nombre o ingredientes" v-model="bebidaStore.busqueda.nombre" />
         </div>
 
         <!-- Categoria -->
         <div class="space-y-4">
           <label for="categoria" class="block text-white uppercase font-extrabold text-lg">Categoría</label>
-          <select id="categoria" name="categoria" class="w-full p-3 rounded-lg focus:outline-none">
+          <select id="categoria" name="categoria" class="w-full p-3 rounded-lg focus:outline-none"
+            v-model="bebidaStore.busqueda.categoria">
             <option value="" selected disabled>-- Seleccione: --</option>
             <option v-for="categoria in bebidaStore.categorias" :key="categoria.strCategory"
               :value="categoria.strCategory">{{ categoria.strCategory }}</option>
