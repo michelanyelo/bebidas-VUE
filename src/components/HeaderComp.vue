@@ -7,6 +7,10 @@ const route = useRoute();
 const paginaInicio = computed(() => route.name === 'inicio');
 const bebidaStore = useBebidasStore();
 
+const onSubmit = () => {
+  bebidaStore.buscarReceta();
+}
+
 </script>
 
 <template>
@@ -26,7 +30,8 @@ const bebidaStore = useBebidasStore();
         </nav>
       </div>
 
-      <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6" v-if="paginaInicio">
+      <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6" v-if="paginaInicio"
+        @submit.prevent="onSubmit">
         <!-- Ingrediente -->
         <div class="space-y-4">
           <label for="ingrediente" class="block text-white uppercase font-extrabold text-lg">Nombre o

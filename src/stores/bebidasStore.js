@@ -9,13 +9,18 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categoria: ''
   })
 
-  onMounted(async () => {
+  onMounted(async function () {
     const { data: { drinks } } = await axios('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
     categorias.value = drinks;
   })
 
+  function buscarReceta() {
+    console.log("Buscando receta API...");
+  }
+
   return {
     categorias,
-    busqueda
+    busqueda,
+    buscarReceta
   }
 });
