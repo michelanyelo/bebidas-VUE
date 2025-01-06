@@ -1,8 +1,28 @@
 <script setup>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useModalStore } from '@/stores/modalStore';
+import { useBebidasStore } from '@/stores/bebidasStore';
 
 const modalStore = useModalStore();
+const bebidasStore = useBebidasStore();
+
+const formatearIngredientes = () => {
+  const ingredientesDiv = document.createElement('div');
+
+  for (let i = 1; i <= 15; i++) {
+    if (bebidasStore.receta[`strIngredient${i}`]) {
+      const ingrediente = bebidasStore.receta[`strIngredient${i}`];
+      const cantidad = bebidasStore.receta[`strMeasure${i}`];
+
+      const ingredienteCantidad = document.createElement('p');
+      ingredienteCantidad.textContent = cantidad ? `${ingrediente} - ${cantidad}` : ingrediente;
+      ingredienteCantidad.classList.add('text-lg', 'text-gray-500', 'my-2');
+
+      ingredientesDiv.appendChild(ingredienteCantidad);
+    }
+  }
+  return ingredientesDiv;
+}
 
 </script>
 
@@ -24,7 +44,24 @@ const modalStore = useModalStore();
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
               <div>
                 <div class="mt-3">
-                  <h3 class="text-lg leading-6 font-medium text-gray-900">Modal Title</h3>
+                  <DialogTitle as="h3" class=" text-gray-900 text-4xl font-extrabold my-5">
+                    {{ bebidasStore.receta.strDrink }}
+                  </DialogTitle>
+
+                  <img :src="bebidasStore.receta.strDrinkThumb" :alt="'Imagen de ' + bebidasStore.receta.strDrink"
+                    class="mx-auto w-96" />
+
+                  <DialogTitle as="h3" class=" text-gray-900 text-4xl font-extrabold my-5">
+                    Ingredientes y cantidades
+                  </DialogTitle>
+
+                  <div v-html="formatearIngredientes().outerHTML"></div>
+
+                  <DialogTitle as="h3" class=" text-gray-900 text-4xl font-extrabold my-5">
+                    Instrucciones
+                  </DialogTitle>
+
+                  <p class="text-lg text-gray-500">{{ bebidasStore.receta.strInstructions }}</p>
                 </div>
               </div>
               <div class="mt-5 sm:mt-6 flex justify-between gap-4">
