@@ -26,8 +26,8 @@ export const useFavoritosStore = defineStore('favoritos', () => {
 
   const handleClickFavorito = () => {
     if (existeFavorito(bebidasStore.receta.idDrink)) {
-      // favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidasStore.receta.idDrink);
-      console.log('Ya existe en favoritos');
+      favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidasStore.receta.idDrink);
+      // console.log('Ya existe en favoritos');
     } else {
       favoritos.value.push(bebidasStore.receta);
     }
@@ -35,6 +35,7 @@ export const useFavoritosStore = defineStore('favoritos', () => {
 
   return {
     handleClickFavorito,
-    favoritos
+    favoritos,
+    existeFavorito
   }
 })
