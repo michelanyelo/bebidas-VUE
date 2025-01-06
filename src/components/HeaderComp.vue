@@ -8,7 +8,7 @@ const paginaInicio = computed(() => route.name === 'inicio');
 const bebidaStore = useBebidasStore();
 
 const onSubmit = () => {
-  bebidaStore.buscarReceta();
+  bebidaStore.obtenerRecetas();
 }
 
 </script>
