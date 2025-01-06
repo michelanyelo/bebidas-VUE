@@ -15,23 +15,35 @@ export const useFavoritosStore = defineStore('favoritos', () => {
     sincronizarLocalStorage()
   }, { deep: true })
 
-  const cargarLocalStorage = () => favoritos.value = JSON.parse(localStorage.getItem('favoritos')) || [];
+  function cargarLocalStorage() {
+    favoritos.value = JSON.parse(localStorage.getItem('favoritos')) || []
+    return favoritos.value;
+  };
 
-  const sincronizarLocalStorage = () => localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+  function sincronizarLocalStorage() {
+    localStorage.setItem('favoritos', JSON.stringify(favoritos.value));
+  };
 
-  const existeFavorito = (id) => {
+  function existeFavorito() {
     const favoritosLocalStorage = cargarLocalStorage();
-    return favoritosLocalStorage.some(favorito => favorito.idDrink === id);
-  }
+    return favoritosLocalStorage.some(favorito => favorito.idDrink === bebidasStore.receta.idDrink);
+  };
 
-  const handleClickFavorito = () => {
-    if (existeFavorito(bebidasStore.receta.idDrink)) {
-      favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidasStore.receta.idDrink);
-      // console.log('Ya existe en favoritos');
+  function eliminarFavorito() {
+    favoritos.value = favoritos.value.filter(favorito => favorito.idDrink !== bebidasStore.receta.idDrink);
+  };
+
+  function agregarFavorito() {
+    favoritos.value.push(bebidasStore.receta);
+  };
+
+  function handleClickFavorito() {
+    if (existeFavorito()) {
+      eliminarFavorito();
     } else {
-      favoritos.value.push(bebidasStore.receta);
+      agregarFavorito();
     }
-  }
+  };
 
   return {
     handleClickFavorito,
