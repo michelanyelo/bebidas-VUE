@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import { useBebidasStore } from "./bebidasStore";
+import { useModalStore } from "./modalStore";
 import { ref, watch, onMounted } from "vue";
 
 export const useFavoritosStore = defineStore('favoritos', () => {
 
   const favoritos = ref([]);
   const bebidasStore = useBebidasStore();
+  const modalStore = useModalStore();
 
   onMounted(() => {
     cargarLocalStorage();
@@ -43,6 +45,7 @@ export const useFavoritosStore = defineStore('favoritos', () => {
     } else {
       agregarFavorito();
     }
+    modalStore.modal = false;
   };
 
   return {
