@@ -42,3 +42,4 @@ npm run lint
 - [Axios](https://axios-http.com/docs/intro)
 - [Vue Router](https://router.vuejs.org/)
 - [Vue 3](https://vuejs.org/)
+- [Hero Icons](https://heroicons.com/)

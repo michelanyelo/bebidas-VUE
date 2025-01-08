@@ -2,6 +2,7 @@
 import HeaderComp from './components/HeaderComp.vue';
 import { RouterView } from 'vue-router';
 import ModalComp from './components/ModalComp.vue';
+import NotificacionComp from './components/NotificacionComp.vue';
 
 </script>
 
@@ -13,4 +14,5 @@ import ModalComp from './components/ModalComp.vue';
   </main>
 
   <ModalComp />
+  <NotificacionComp />
 </template>
