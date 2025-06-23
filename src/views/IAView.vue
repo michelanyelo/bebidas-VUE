@@ -1,14 +1,32 @@
-<script setup></script>
+<script setup>
+import { useIAStore } from '@/stores/ia.js'
+import { useNotificacionStore } from '@/stores/notificacionStore.js'
+
+const IAStore = useIAStore()
+const notificacionStore = useNotificacionStore()
+
+const handleSubmit = () => {
+  if (IAStore.prompt.trim() === '') {
+    notificacionStore.$patch({
+      texto: 'Por favor, ingresa un prompt válido.',
+      mostrar: true,
+      error: true,
+    })
+  }
+  IAStore.generateResponse()
+}
+</script>
 
 <template>
   <h1 class="text-6xl font-extrabold">Generar Receta con IA</h1>
 
   <div class="max-w-4xl mx-auto">
-    <form class="flex flex-col space-y-3 py-10">
+    <form class="flex flex-col space-y-3 py-10" @submit.prevent="handleSubmit">
       <div class="relative">
         <input
           name="prompt"
           id="prompt"
+          v-model="IAStore.prompt"
           class="border bg-white p-4 rounded-lg w-full border-slate-800"
           placeholder="Genera una receta con ingredientes. Ej. Bebida con Tequila y Fresa"
         />
