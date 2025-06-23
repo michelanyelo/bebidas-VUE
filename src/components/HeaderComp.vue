@@ -27,6 +27,9 @@ const onSubmit = () => {
           <RouterLink :to="{ name: 'favoritos' }" class="uppercase font-bold" active-class="text-orange-500">
             Favoritos
           </RouterLink>
+          <RouterLink :to="{ name: 'ia' }" class="uppercase font-bold" active-class="text-orange-500">
+            Generar Receta con IA
+          </RouterLink>
         </nav>
       </div>
 

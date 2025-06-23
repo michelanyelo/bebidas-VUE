@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/favoritos',
       name: 'favoritos',
       component: () => import('../views/FavoritosView.vue')
+    },
+    {
+      path: '/ia',
+      name: 'ia',
+      component: () => import('../views/IAView.vue')
     }
   ],
 })
