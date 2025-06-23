@@ -34,6 +34,8 @@ const handleSubmit = () => {
           type="submit"
           aria-label="Enviar"
           class="cursor-pointer absolute top-1/2 right-5 transform -translate-x-1/2 -translate-y-1/2"
+          :class="{ 'cursor-not-allowed opacity-50': IAStore.isLoading }"
+          :disabled ="IAStore.isLoading"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +55,9 @@ const handleSubmit = () => {
       </div>
     </form>
 
-    <div class="py-10 whitespace-pre-wrap"></div>
+    <p v-if="IAStore.isLoading" class="text-center animate-blink">Generando...</p>
+    <div class="py-10 whitespace-pre-wrap">
+      {{ IAStore.response }}
+    </div>
   </div>
 </template>
